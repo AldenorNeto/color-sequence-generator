@@ -1,62 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LED Simulator</title>
-    <style>
-      body {
-        background-color: black;
-      }
-    </style>
   </head>
   <body>
-    <div id="main"></div>
-    <script type="module">
-      const fileName = 'fireDoom'
-
-      async function carregarDados() {
-        try {
-          const resposta = await fetch(`../FixedsSequences/${fileName}.json`);
-          const indices = await resposta.json();
-
-          function criarDivComDivsFilhasComPadding(sequenciaCores, indice) {
-            const divPai = document.getElementById("main");
-            divPai.innerHTML = "";
-            divPai.style.border = "1px solid black";
-            divPai.style.display = "flex";
-
-            sequenciaCores.forEach((cor) => {
-              const divFilha = document.createElement("div");
-              divFilha.style.padding = "13px";
-              divFilha.style.width = "0";
-              divFilha.style.height = "0";
-              divFilha.style.background = cor;
-              divPai.appendChild(divFilha);
-            });
-
-            document.body.appendChild(divPai);
-          }
-
-          function main(indice) {
-            if (indice >= indices.length) {
-              indice = 0;
-            }
-
-            criarDivComDivsFilhasComPadding(indices[indice], indice);
-
-            setTimeout(() => {
-              main(indice + 1);
-            }, 100);
-          }
-
-          main(0);
-        } catch (erro) {
-          console.error("Falha ao carregar o arquivo JSON", erro);
-        }
-      }
-
-      carregarDados();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

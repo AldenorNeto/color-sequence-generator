@@ -49,9 +49,7 @@ def gerar_arrays
 
     (-length..length).each do |i|
       result = reference + i
-      if result > construtc.size - 1 || result < 0
-        
-      else
+      unless result > construtc.size - 1 || result < 0
         construtc[result] = i.abs
       end
     end
