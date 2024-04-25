@@ -72,7 +72,7 @@ def salvar_arrays_json(arrays)
   File.write(json_file_path, JSON.pretty_generate(arrays))
 end
 
-# Execução do programa
+# Geração do array de cores
 begin
   salvar_arrays_json(gerar_arrays)
   puts "Os arrays foram gerados e salvos com sucesso."
