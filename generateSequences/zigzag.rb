@@ -3,52 +3,60 @@ require 'fileutils'
 
 # Constantes
 TAMANHO_ARRAY = 100
-NUM_INTERACOES = 100
-COLOR_PALETTE = [
-  "#000000",
-  "#00403b",
-  "#007d73",
-  "#00c4b5",
+NUM_INTERACOES = 200
+COLOR_PALETTE = 
+[
   "#00ffeb",
-  "#01e3e1",
-  "#03b9d3",
-  "#0496c7",
-  "#0578bc",
-  "#065eb3",
-  "#074ead",
-  "#083ba7",
-  "#0929a7",
-  "#0a17a7",
-  "#0b0ba7"
+  "#01ebe6",
+  "#02d6e0",
+  "#0594cd",
+  "#0766c1",
+  "#092eb1",
+  "#09199b",
+  "#070e7e",
+  "#05095f",
+  "#040443",
+  "#020223",
+  "#000000"
 ]
 
 VALOR_MAXIMO = COLOR_PALETTE.size - 1
 
-def proximo_valor(valor_atual, valor_anterior, color_palette)
+def intera(index)
+  alvo = 0
+  if index < 100
+    alvo = index
+  else 
+    alvo = 200 - index
+  end
 
-
-
-  return color_palette[indice_anterior + 1]
+  alvo
 end
 
 # Função para gerar os arrays
 def gerar_arrays
-  array_inicial = Array.new(TAMANHO_ARRAY) { COLOR_PALETTE[0] }
-  array_inicial[0] = COLOR_PALETTE[9]
+  length = COLOR_PALETTE.size - 1
+
+  array_inicial = Array.new(TAMANHO_ARRAY, length)
 
   arrays_gerados = []
 
   NUM_INTERACOES.times do | index |
-    array = arrays_gerados.size > 0 ? arrays_gerados[index - 1] : array_inicial.dup
+    # array = arrays_gerados.size > 0 ? arrays_gerados[index - 1] : array_inicial.dup
+    reference = intera(index)
+    
+    construtc = array_inicial.dup
 
-    newarray = array.map.with_index do |numero, indice| 
-      
-      indiceAfter = indice >= array.size - 1 ? 0 : indice + 1
-
-      array[indiceAfter]
+    (-length..length).each do |i|
+      result = reference + i
+      if result > construtc.size - 1 || result < 0
+        
+      else
+        construtc[result] = i.abs
+      end
     end
-
-    arrays_gerados << newarray
+    
+    arrays_gerados << construtc.map {|const|  COLOR_PALETTE[const]}
   end
 
   return arrays_gerados
