@@ -1,1 +1,1 @@
-# ruby-and-cpp
+# color-sequence-generator
